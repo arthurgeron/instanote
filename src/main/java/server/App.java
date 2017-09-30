@@ -1,7 +1,8 @@
-/**
+package server; /**
  * Created by arthurgeron on 09/05/17.
  */
 
+import infra.API;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
