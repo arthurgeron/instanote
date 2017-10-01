@@ -25,6 +25,7 @@ public class SecurityTest {
     public void CanGenerateMD5() {
         try {
             Assert.assertNotEquals(Security.GenerateMD5(), Security.GenerateMD5());
+            System.out.println(Security.GenerateMD5("test123"));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             Assert.fail();

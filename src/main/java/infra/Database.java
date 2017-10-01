@@ -43,22 +43,22 @@ public class Database {
     public  Boolean Login(String user, String password) throws SQLException, NoSuchAlgorithmException {
         Connection connection = OpenConnection();
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("select login(\""+user+"\",\""+Security.GenerateMD5(password)+"\")");
+        ResultSet resultSet = statement.executeQuery("select login(\""+user+"\",\""+Security.GenerateMD5(password)+"\") as result");
         String result = null;
         if (resultSet.next()) {
-            result = resultSet.getString("id");
+            result = resultSet.getString("result");
         }
         resultSet.close();
         statement.close();
         connection.close();
-        return result.equals(1);
+        return result.equals("1");
     }
 
-    public  Boolean DeleteUser(String user, String password) {
+    public  Boolean DeleteUser(String user, String password, String token) {
         try {
             Connection connection = OpenConnection();
             Statement statement = connection.createStatement();
-            statement.executeQuery("CALL deleteUser(\"" + user + "\",\"" + Security.GenerateMD5(password) + "\")");
+            statement.executeQuery("CALL deleteUser(\"" + user + "\",\"" + Security.GenerateMD5(password) + "\",\""+token+"\")");
             statement.close();
             connection.close();
         } catch (Exception e) {
@@ -68,25 +68,39 @@ public class Database {
         return true;
     }
 
-    public  Boolean ValidateToken(String token) throws SQLException, NoSuchAlgorithmException {
+    public  Boolean ActivateUser(String user, String password, String token) {
+        try {
+            Connection connection = OpenConnection();
+            Statement statement = connection.createStatement();
+            statement.executeQuery("CALL activateUser(\"" + user + "\",\"" + Security.GenerateMD5(password) + "\",\""+token+"\")");
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public  Boolean ValidateToken(String user, String token) throws SQLException, NoSuchAlgorithmException {
         Connection connection = OpenConnection();
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("select token(\""+token+"\")");
+        ResultSet resultSet = statement.executeQuery("select token(\""+user+"\",\""+token+"\") as result");
         String result = null;
         if (resultSet.next()) {
-            result = resultSet.getString("id");
+            result = resultSet.getString("result");
         }
         resultSet.close();
         statement.close();
         connection.close();
-        return result.equals(1);
+        return result.equals("1");
     }
 
     public  Boolean StoreToken(String user, String password, String token){
         try {
             Connection connection = OpenConnection();
             Statement statement = connection.createStatement();
-            statement.executeQuery("execute storeToken(\""+user+"\",\""+Security.GenerateMD5(password)+"\",\""+token+"\")");
+            statement.executeQuery("CALL storeToken(\""+user+"\",\""+Security.GenerateMD5(password)+"\",\""+token+"\")");
             statement.close();
             connection.close();
         } catch (Exception e) {

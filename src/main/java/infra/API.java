@@ -46,7 +46,7 @@ public class API {
             if (database.Login(user, password)) {
                 token = Security.GenerateToken();
                 boolean storedToken  = database.StoreToken(user, password, token);
-                if (!storedToken || !database.ValidateToken(token)) {
+                if (!storedToken || !database.ValidateToken(user, token)) {
                     return InternalError();
                 }
             } else {

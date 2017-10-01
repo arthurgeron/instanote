@@ -26,19 +26,6 @@ public class DatabaseTest {
     }
 
     @Test
-    public void canCreateUser() {
-        Boolean loggedIn;
-        try {
-            Database database = new Database();
-            loggedIn = database.CreateUser(user, password);
-            database.DeleteUser(user, password);
-            Assert.assertTrue(loggedIn);
-        } catch (Exception e) {
-            Assert.fail();
-        }
-    }
-
-    @Test
     public void canLogIn() {
         Boolean loggedIn;
         try {
@@ -67,7 +54,7 @@ public class DatabaseTest {
         Boolean validToken;
         try {
             Database database = new Database();
-            validToken = database.ValidateToken(token);
+            validToken = database.ValidateToken(user, token);
             Assert.assertTrue(validToken);
         } catch (Exception e) {
             Assert.fail();
@@ -79,7 +66,19 @@ public class DatabaseTest {
         Boolean deletedUser;
         try {
             Database database = new Database();
-            deletedUser = database.DeleteUser(user, password);
+            deletedUser = database.DeleteUser(user, password, token);
+            Assert.assertTrue(deletedUser);
+        } catch (Exception e) {
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void canActivateUser() {
+        Boolean deletedUser;
+        try {
+            Database database = new Database();
+            deletedUser = database.ActivateUser(user, password, token);
             Assert.assertTrue(deletedUser);
         } catch (Exception e) {
             Assert.fail();
