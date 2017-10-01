@@ -5,7 +5,7 @@ logs
 build/Release
 target
 
-# DB com.instanote.infra.Credentials
+# DB com.instanote.com.instanote.infra.Credentials
 Credentials.java
 # Idea files
 .idea
