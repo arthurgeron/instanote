@@ -1,4 +1,4 @@
-package infra; /**
+package com.instanote.infra; /**
  * Created by arthurgeron on 09/05/17.
  */
 

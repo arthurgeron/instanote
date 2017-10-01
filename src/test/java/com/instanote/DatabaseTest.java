@@ -1,8 +1,9 @@
-import infra.Database;
+package com.instanote;
+
+import com.instanote.infra.Database;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
 

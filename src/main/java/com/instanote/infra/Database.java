@@ -1,4 +1,4 @@
-package infra;
+package com.instanote.infra;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 

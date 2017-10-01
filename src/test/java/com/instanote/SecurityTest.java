@@ -1,4 +1,6 @@
-import infra.Security;
+package com.instanote;
+
+import com.instanote.infra.Security;
 import org.junit.Assert;
 import org.junit.Test;
 

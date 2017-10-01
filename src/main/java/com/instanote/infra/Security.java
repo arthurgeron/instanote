@@ -1,6 +1,4 @@
-package infra;
-
-import sun.plugin2.message.Message;
+package com.instanote.infra;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

@@ -1,8 +1,8 @@
-package server; /**
+package com.instanote.server; /**
  * Created by arthurgeron on 09/05/17.
  */
 
-import infra.API;
+import com.instanote.infra.API;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -18,7 +18,7 @@ public class App implements Runnable {
             app.jettyServer.start();
             app.jettyServer.join();
         } catch (Exception e) {
-            System.out.println("Exception! Stopping jetty server ");
+            System.out.println("Exception! Stopping jetty com.instanote.server ");
             app.jettyServer.stop();
             e.printStackTrace();
         } finally {
@@ -44,7 +44,7 @@ public class App implements Runnable {
 
         // Tells the Jersey Servlet which REST service/class to load.
         jerseyServlet.setInitParameter(
-                "jersey.config.server.provider.classnames",
+                "jersey.config.com.instanote.server.provider.classnames",
                 API.class.getCanonicalName());
 
     }
