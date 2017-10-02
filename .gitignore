@@ -10,3 +10,4 @@ Credentials.java
 # Idea files
 .idea
 *.iml
+.settings

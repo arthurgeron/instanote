@@ -54,6 +54,8 @@ public class DatabaseTest {
     public void canValidateToken() {
         Boolean validToken;
         try {
+            //Enforce user is active to avoid failing the test, since tests are ran in a random order
+            canActivateUser();
             Database database = new Database();
             validToken = database.ValidateToken(user, token);
             Assert.assertTrue(validToken);

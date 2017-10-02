@@ -34,7 +34,7 @@ public class App implements Runnable {
 
     private void newServerInstance() {
 
-        jettyServer = new Server(8080);
+        jettyServer = new Server(80);
         ServletContextHandler context = new ServletContextHandler(jettyServer, "/*");
         jettyServer.setHandler(context);
 
@@ -44,7 +44,7 @@ public class App implements Runnable {
 
         // Tells the Jersey Servlet which REST service/class to load.
         jerseyServlet.setInitParameter(
-                "jersey.config.com.instanote.server.provider.classnames",
+                "jersey.config.server.provider.classnames",
                 API.class.getCanonicalName());
 
     }
