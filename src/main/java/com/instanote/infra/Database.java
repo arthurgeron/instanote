@@ -51,7 +51,7 @@ public class Database {
         resultSet.close();
         statement.close();
         connection.close();
-        return result.equals("1");
+        return result == null ? false : result.equals("1");
     }
 
     public  Boolean DeleteUser(String user, String password, String token) {
